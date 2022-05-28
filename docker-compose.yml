@@ -46,24 +46,13 @@ services:
   volumes:
    - app:/var/www/html
    - ./nginx-conf:/etc/nginx/conf.d
-   - certbot-etc:/etc/letsencrypt
   networks:
    - app-network
 
  #certbot service
- certbot:
-  depends_on:
-   - webserver
-  image: certbot/certbot
-  container_name: certbot
-  volumes:
-   - certbot-etc:/etc/letsencrypt
-   - app:/var/www/html
-  command: certonly --webroot --webroot-path=/var/www/html --email hackins@cloudsigma.com --agree-tos --no-eff-email --force-renewal -d example.ro -d www.example.ro
 
  #Volumes
 volumes:
- certbot-etc:
  app:
  dbdata:
 
